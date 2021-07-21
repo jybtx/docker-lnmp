@@ -29,6 +29,19 @@ services:
     restart: always
     networks:
       - backend
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/data:/var/lig/mysql
+      - ./mysql/my.cnf:/etc/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    networks:
+      - backend
+    restart: always
+    container_name: mysql
 
 networks:
   frontend:
