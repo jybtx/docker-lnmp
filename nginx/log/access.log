@@ -1,5 +1,0 @@
-192.168.199.9 - - [21/Jul/2021:09:15:49 +0000] "GET / HTTP/1.1" 403 555 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
-192.168.199.9 - - [21/Jul/2021:09:15:49 +0000] "GET /favicon.ico HTTP/1.1" 404 555 "http://192.168.199.3/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
-192.168.199.9 - - [21/Jul/2021:09:15:57 +0000] "GET / HTTP/1.1" 403 555 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
-192.168.199.9 - - [21/Jul/2021:09:16:51 +0000] "GET / HTTP/1.1" 200 14 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
-192.168.199.9 - - [21/Jul/2021:09:17:26 +0000] "GET / HTTP/1.1" 200 85690 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
