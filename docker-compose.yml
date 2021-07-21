@@ -29,6 +29,7 @@ services:
     restart: always
     networks:
       - backend
+
   mysql:
     image: mysql:8.0
     ports:
@@ -43,7 +44,22 @@ services:
     restart: always
     container_name: mysql
 
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/data:/usr/local/redis/data
+      - ./redis/redis.conf:/usr/local/redis/redis.conf
+      - ./redis/redis.log:/usr/local/redis/redis.log
+    networks:
+      - backend
+    restart: always
+    container_name: redis
+
 networks:
   frontend:
   backend:
+
+
 
