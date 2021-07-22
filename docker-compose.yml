@@ -24,7 +24,7 @@ services:
       - "9000:9000"
     volumes:
       - /var/www/:/var/www/
-      - ./php/php.ini:/usr/local/php/etc/php.ini
+      - ./php/php.ini:/usr/local/etc/php/php.ini
       - ./php/php-fpm.conf:/usr/local/php/etc/php-fpm.conf
       - ./php/www.conf:/usr/local/php/etc/php-fpm.d/www.conf
       - ./php/log/:/usr/local/php/var/log/
