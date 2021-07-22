@@ -4,11 +4,10 @@ FROM php:8.0-fpm
 MAINTAINER jybtx <admin@jybtx.com>
 
 # Install Supervisor.
-RUN \
+RUN set -x && \
   apt update && \
   apt install -y supervisor && \
-  rm -rf /var/lib/apt/lists/* && \
-  sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
+  rm -rf /var/lib/apt/lists/*
 
 
 RUN curl -sS https://getcomposer.org/installer | php \
@@ -23,4 +22,4 @@ RUN apt -y update | apt upgrade -y
 
 # ------------------------------------------------------------------------------
 # Start supervisor, define default command.
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+# CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
