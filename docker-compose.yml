@@ -18,7 +18,7 @@ services:
       - frontend
 
   phpfpm:
-    image: php:8.0-fpm
+    build: ./supervisor
     container_name: my_php
     ports:
       - "9000:9000"
@@ -28,11 +28,14 @@ services:
       - ./php/php-fpm.conf:/usr/local/php/etc/php-fpm.conf
       - ./php/www.conf:/usr/local/php/etc/php-fpm.d/www.conf
       - ./php/log/:/usr/local/php/var/log/
+      - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./supervisor/conf.d:/etc/supervisor/conf.d
+      - ./supervisor/log:/var/log/supervisor
     restart: always
     environment:
       TZ: 'Asia/Shanghai'
     networks:
-      - backend
+      - backend      
 
   mysql:
     image: mysql:8.0
