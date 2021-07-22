@@ -69,9 +69,15 @@ services:
     networks:
       - backend
 
-  rabbitmq:
+  rabbitmq1:
+    hostname: rabbitmq1
+    container_name: rabbitmq1
     image: rabbitmq:3-management
-    container_name: rabbitmq
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 8G      
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -81,9 +87,51 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: 123456
       TZ: 'Asia/Shanghai'
+      RABBITMQ_ERLANG_COOKIE: 'rabbitmqCookie'
+    restart: always
     networks:
       - backend
+
+  rabbitmq2:
+    hostname: rabbitmq2
+    container_name: rabbitmq2
+    image: rabbitmq:3-management
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 8G      
+    ports:
+      - "5673:5672"
+    volumes:
+      - ./rabbitmq/data2:/var/lib/rabbitmq
+    environment:
+      TZ: 'Asia/Shanghai'
+      RABBITMQ_ERLANG_COOKIE: 'rabbitmqCookie'
     restart: always
+    networks:
+      - backend
+
+  rabbitmq3:
+    hostname: rabbitmq3
+    container_name: rabbitmq3
+    image: rabbitmq:3-management
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 8G      
+    ports:
+      - "5674:5672"
+    volumes:
+      - ./rabbitmq/data3:/var/lib/rabbitmq
+    environment:
+      TZ: 'Asia/Shanghai'
+      RABBITMQ_ERLANG_COOKIE: 'rabbitmqCookie'
+    restart: always
+    networks:
+      - backend
+    
 
 networks:
   frontend:
