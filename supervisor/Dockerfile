@@ -1,20 +1,23 @@
 
-FROM php:8.0-fpm
+FROM php:7.3-fpm
 
 MAINTAINER jybtx <admin@jybtx.com>
 
-# Install Supervisor.
+RUN export CFLAGS="PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
+
 RUN set -x && \
-  apt update -y && \
-  apt upgrade -y && \
-  apt install -y supervisor && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get update -y && \
+  apt-get upgrade -y && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev libtidy-dev libxslt1-dev libmagickwand-dev libmcrypt-dev libzip-dev supervisor pdo_mysql && \
+  rm -r /var/lib/apt/lists/* && \
+  pecl install imagick-3.4.3 mcrypt-1.0.3 && \
+  docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
+  docker-php-ext-install -j$(nproc) gd soap wddx xmlrpc tidy xsl zip bcmath calendar exif sockets && \
+  docker-php-ext-enable imagick mcrypt
 
 
 RUN curl -sS https://getcomposer.org/installer | php \
    && mv composer.phar /usr/local/bin/composer \
    && composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
-# ------------------------------------------------------------------------------
-# Start supervisor, define default command.
-# CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
