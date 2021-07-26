@@ -11,10 +11,10 @@ RUN set -x && \
   apt-get update && \
   apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev libtidy-dev libxslt1-dev libmagickwand-dev libmcrypt-dev libzip-dev supervisor && \
   rm -r /var/lib/apt/lists/* && \
-  pecl install imagick-3.4.3 mcrypt-1.0.3 && \
+  pecl install imagick-3.4.3 mcrypt-1.0.3 swoole-4.6.6 && \
   docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
   docker-php-ext-install -j$(nproc) gd soap wddx xmlrpc tidy xsl zip bcmath calendar exif sockets pdo_mysql && \
-  docker-php-ext-enable imagick mcrypt
+  docker-php-ext-enable imagick mcrypt swoole
 
 
 RUN curl -sS https://getcomposer.org/installer | php \
