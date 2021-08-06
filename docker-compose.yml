@@ -78,7 +78,7 @@ services:
   rabbitmq1:
     hostname: rabbitmq1
     container_name: rabbitmq1
-    image: rabbitmq:3-management
+    image: rabbitmq:3.8-management
     deploy:
       resources:
         limits:
@@ -101,7 +101,7 @@ services:
   rabbitmq2:
     hostname: rabbitmq2
     container_name: rabbitmq2
-    image: rabbitmq:3-management
+    image: rabbitmq:3.8-management
     deploy:
       resources:
         limits:
@@ -121,7 +121,7 @@ services:
   rabbitmq3:
     hostname: rabbitmq3
     container_name: rabbitmq3
-    image: rabbitmq:3-management
+    image: rabbitmq:3.8-management
     deploy:
       resources:
         limits:
