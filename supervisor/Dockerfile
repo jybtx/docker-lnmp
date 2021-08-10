@@ -24,6 +24,3 @@ RUN curl -sS https://getcomposer.org/installer | php \
    && composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 
-# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
-
-ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
