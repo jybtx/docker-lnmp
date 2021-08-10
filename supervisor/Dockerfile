@@ -5,11 +5,13 @@ MAINTAINER jybtx <admin@jybtx.com>
 
 RUN export CFLAGS="PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
 
+COPY sources.list /etc/apt/
+
 RUN set -x && \
   apt-get update -y && \
   apt-get upgrade -y && \
   apt-get update && \
-  apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev libtidy-dev libxslt1-dev libmagickwand-dev libmcrypt-dev libzip-dev supervisor && \
+  apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev libtidy-dev libxslt1-dev libmagickwand-dev libmcrypt-dev libzip-dev supervisor vim git redis && \
   rm -r /var/lib/apt/lists/* && \
   pecl install imagick-3.4.3 mcrypt-1.0.3 swoole-4.6.6 && \
   docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
@@ -21,3 +23,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
    && mv composer.phar /usr/local/bin/composer \
    && composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
+
+# CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+
+ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
