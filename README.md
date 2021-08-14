@@ -1,4 +1,4 @@
-# 使用 Docker 搭建 PHP 开发环境
+# 使用 Docker-compose 搭建 PHP 开发环境
 PHP（7.3）/ MySQL8.0 / Nginx / Redis / RabbitMQ集群
 
 请确保你的电脑上面安装好了docker以及docker-compose,如果没有请自行google 或者  百度,使用这个请确保对docker的命令有一定的了解。如果有需要修改配置的话，请在docker-compose.yml文件中修改，然后重新执行一遍命令即可。
