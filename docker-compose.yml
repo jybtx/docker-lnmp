@@ -55,7 +55,6 @@ services:
       - backend
     restart: always
 
-
   redis:
     image: redis
     container_name: redis
@@ -133,8 +132,7 @@ services:
       RABBITMQ_ERLANG_COOKIE: 'rabbitmqCookie'
     restart: always
     networks:
-      - backend
-    
+      - backend    
 
 networks:
   frontend:
