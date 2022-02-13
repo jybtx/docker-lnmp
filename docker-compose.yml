@@ -17,6 +17,21 @@ services:
       - backend
       - frontend
 
+  node:
+    image: node:12.14.1
+    container_name: node
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/www/html:/var/www/html
+    restart: always
+    command: tail -f
+    environment:
+      TZ: 'Asia/Shanghai'
+    networks:
+      - frontend  
+
+
   phpfpm:
     build: ./supervisor
     container_name: my_php
