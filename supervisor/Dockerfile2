@@ -12,9 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
   apt-get update -y && \
   apt-get upgrade -y && \
   apt-get update && \
-  apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev libtidy-dev libxslt1-dev libmagickwand-dev libmcrypt-dev libzip-dev supervisor vim git redis && \
-
-# apt-get install -y --no-install-recommends apt-utils curl sudo iputils-ping libicu-dev libmemcached-dev libz-dev libpq-dev libzip-dev libonig-dev libjpeg62-turbo-dev libjpeg-dev    libpng-dev libfreetype6-dev libssl-dev libmcrypt-dev libtidy-dev libxslt1-dev libmagickwand-dev supervisor zlib1g-dev libxml2-dev libbz2-dev graphviz git vim wget net-tools zip unzip openssh-server openssh-client subversion && \
+  apt-get install -y --no-install-recommends libicu-dev libmemcached-dev libz-dev libpq-dev libzip-dev libonig-dev libjpeg62-turbo-dev libjpeg-dev libpng-dev libfreetype6-dev libssl-dev libmcrypt-dev libtidy-dev libxslt1-dev libmagickwand-dev supervisor zlib1g-dev libxml2-dev libbz2-dev graphviz && \
 
   rm -rf /var/lib/apt/lists/* && \
 
