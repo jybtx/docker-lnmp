@@ -76,7 +76,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./redis/data:/usr/local/redis/data
+      - ./redis/data:/data
       - ./redis/redis.conf:/usr/local/redis/redis.conf
       - ./redis/redis.log:/usr/local/redis/redis.log    
       - ./redis/conf:/usr/local/etc/redis
