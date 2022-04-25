@@ -20,10 +20,10 @@ RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && a
 # 安装swoole
   pecl install -o -f swoole && \
 # 安装 memcached 扩展
-  pecl install -o -f memcached && \
+  # pecl install -o -f memcached && docker-php-ext-enable memcached && \
   docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
   docker-php-ext-install -j$(nproc) gd soap wddx xmlrpc tidy xsl zip bcmath calendar exif sockets pdo_mysql && \
-  docker-php-ext-enable imagick mcrypt swoole memcached && \
+  docker-php-ext-enable imagick mcrypt swoole && \
 
   curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
