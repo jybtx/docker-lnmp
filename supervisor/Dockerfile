@@ -5,6 +5,8 @@ MAINTAINER jybtx <admin@jybtx.com>
 
 RUN export CFLAGS="PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
 
+# https://pecl.php.net/ 扩展查询地址
+
 # 国内换源
 RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN  sed -i s@/security.debian.org/@/mirrors.ustc.edu.cn/@g /etc/apt/sources.list
