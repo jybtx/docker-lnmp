@@ -26,6 +26,7 @@ services:
       - /var/www/html:/var/www/html
     restart: always
     command: tail -f
+    working_dir: /var/www/html
     environment:
       TZ: 'Asia/Shanghai'
     networks:
@@ -51,6 +52,27 @@ services:
       TZ: 'Asia/Shanghai'
     networks:
       - backend      
+  
+  php8:
+    build: ./php8
+    container_name: php8
+    hostname: php8
+    expose:
+      - "9000"
+    volumes:
+      - /var/www/html:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./php/php-fpm.conf:/usr/local/php/etc/php-fpm.conf
+      - ./php/www.conf:/usr/local/php/etc/php-fpm.d/www.conf
+      - ./php/log/:/usr/local/php/var/log/
+      - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./supervisor/conf.d:/etc/supervisor/conf.d
+      - ./supervisor/log:/var/log/supervisor
+    restart: always
+    environment:
+      TZ: 'Asia/Shanghai'
+    networks:
+      - backend
 
   mysql:
     image: mysql:8.0
@@ -64,8 +86,8 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
       MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_USER: repl
-      MYSQL_PASSWORD: 123456
+    #  MYSQL_USER: repl
+    #  MYSQL_PASSWORD: 123456
     networks:
       - backend
     restart: always
@@ -82,6 +104,16 @@ services:
       - ./redis/conf:/usr/local/etc/redis
     environment:
       TZ: 'Asia/Shanghai'
+    restart: always
+    networks:
+      - backend
+
+  memcached:
+    hostname: memcached
+    container_name: memcached
+    image: memcached:1.6.15
+    expose:
+      - "11211"
     restart: always
     networks:
       - backend
