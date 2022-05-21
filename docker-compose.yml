@@ -10,6 +10,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/log/:/var/log/nginx/
       - /var/www/html:/var/www/html
+    working_dir: /etc/nginx/nginx.conf
     environment:
       TZ: 'Asia/Shanghai'
     restart: always
@@ -47,6 +48,7 @@ services:
       - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
       - ./supervisor/conf.d:/etc/supervisor/conf.d
       - ./supervisor/log:/var/log/supervisor
+    working_dir: /var/www/html
     restart: always
     environment:
       TZ: 'Asia/Shanghai'
@@ -68,6 +70,7 @@ services:
       - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
       - ./supervisor/conf.d:/etc/supervisor/conf.d
       - ./supervisor/log:/var/log/supervisor
+    working_dir: /var/www/html
     restart: always
     environment:
       TZ: 'Asia/Shanghai'
