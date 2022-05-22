@@ -10,7 +10,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/log/:/var/log/nginx/
       - /var/www/html:/var/www/html
-    working_dir: /etc/nginx/nginx.conf
+    working_dir: /etc/nginx/conf.d
     environment:
       TZ: 'Asia/Shanghai'
     restart: always
