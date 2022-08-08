@@ -1,5 +1,6 @@
 
 FROM php:8.0-fpm
+# FROM php:8.1-fpm
 
 MAINTAINER jybtx <admin@jybtx.com>
 
@@ -49,7 +50,7 @@ docker-php-source delete
 # 安装 Composer
 RUN curl -sS https://getcomposer.org/installer | php \
    && mv composer.phar /usr/local/bin/composer \
-   && composer config -g repo.packagist composer https://packagist.phpcomposer.com
+   && composer config -g repo.packagist composer https://packagist.org
 
 
 
