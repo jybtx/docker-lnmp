@@ -19,7 +19,7 @@ services:
       - frontend
 
   node:
-    image: node:12.14.1
+    image: node:12.18.3
     container_name: node
     ports:
       - "8080:8080"
@@ -59,6 +59,28 @@ services:
     build: ./php8
     container_name: php8
     hostname: php8
+    expose:
+      - "9000"
+    volumes:
+      - /var/www/html:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./php/php-fpm.conf:/usr/local/php/etc/php-fpm.conf
+      - ./php/www.conf:/usr/local/php/etc/php-fpm.d/www.conf
+      - ./php/log/:/usr/local/php/var/log/
+      - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./supervisor/conf.d:/etc/supervisor/conf.d
+      - ./supervisor/log:/var/log/supervisor
+    working_dir: /var/www/html
+    restart: always
+    environment:
+      TZ: 'Asia/Shanghai'
+    networks:
+      - backend
+
+  php74:
+    build: ./php74
+    container_name: php7.4
+    hostname: php7.4
     expose:
       - "9000"
     volumes:
