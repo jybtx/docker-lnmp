@@ -20,7 +20,7 @@ RUN set -x && \
   rm -r /var/lib/apt/lists/* && \  
   pecl install imagick-3.4.3 mcrypt-1.0.3 swoole-4.8.0 && \
   docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
-  docker-php-ext-install -j$(nproc) gd soap wddx xmlrpc tidy xsl zip bcmath calendar exif sockets pdo_mysql && \
+  docker-php-ext-install -j$(nproc) gd soap wddx xmlrpc tidy xsl zip bcmath calendar exif sockets pdo_mysql pcntl && \
   docker-php-ext-enable imagick mcrypt swoole && \
 # 安装 memcached 扩展
 pecl install memcached  && docker-php-ext-enable memcached && \
