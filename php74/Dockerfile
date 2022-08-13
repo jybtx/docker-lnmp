@@ -18,6 +18,18 @@ RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && a
 # && docker-php-ext-install bcmath intl pcntl sockets soap exif opcache swoole redis \
   && rm -rf /var/lib/apt/lists/* \
 
+# 安装 memcached 扩展
+&& pecl install memcached && docker-php-ext-enable memcached \
+
+# 安装 swoole 扩展
+&& pecl install swoole-4.8.0 && docker-php-ext-enable swoole \
+
+# 安装 mcrypt 扩展
+&& pecl install mcrypt-1.0.3 && docker-php-ext-enable mcrypt \
+
+# 安装 imagick 扩展
+&& pecl install imagick-3.4.3 && docker-php-ext-enable imagick \
+
   && apt-get clean \
 
 

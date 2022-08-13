@@ -23,7 +23,7 @@ RUN set -x && \
   docker-php-ext-install -j$(nproc) gd soap wddx xmlrpc tidy xsl zip bcmath calendar exif sockets pdo_mysql && \
   docker-php-ext-enable imagick mcrypt swoole && \
 # 安装 memcached 扩展
-pecl install -o -f memcached  && docker-php-ext-enable memcached && \
+pecl install memcached  && docker-php-ext-enable memcached && \
 
   docker-php-source delete
 
