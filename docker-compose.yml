@@ -51,6 +51,7 @@ services:
       - ./supervisor/log:/var/log/supervisor
     working_dir: /var/www/html
     restart: always
+    command: supervisord -c /etc/supervisor/supervisord.conf
     environment:
       TZ: 'Asia/Shanghai'
     networks:
