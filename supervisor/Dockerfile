@@ -16,7 +16,7 @@ RUN set -x && \
   apt-get update -y && \
   apt-get upgrade -y && \
   apt-get update && \
-  apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev libtidy-dev libxslt1-dev libmagickwand-dev libmcrypt-dev libzip-dev libmemcached-dev supervisor vim git redis && \
+  apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev libtidy-dev libxslt1-dev libmagickwand-dev libmcrypt-dev libzip-dev libmemcached-dev supervisor vim git redis procps && \
   rm -r /var/lib/apt/lists/* && \  
   pecl install imagick-3.4.3 mcrypt-1.0.3 swoole-4.8.0 && \
   docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \

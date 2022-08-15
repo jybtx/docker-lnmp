@@ -52,7 +52,8 @@ services:
       - ./supervisor/log:/var/log/supervisor
     working_dir: /var/www/html
     restart: always
-    command: supervisord -c /etc/supervisor/supervisord.conf
+    command: >
+        bash -c "supervisord -s -c /etc/supervisor/supervisord.conf && php-fpm"
     environment:
       TZ: 'Asia/Shanghai'
     networks:
@@ -132,6 +133,8 @@ services:
       - ./redis/conf:/usr/local/etc/redis
     environment:
       TZ: 'Asia/Shanghai'
+    # command: >
+    #      --requirepass
     restart: always
     networks:
       - backend

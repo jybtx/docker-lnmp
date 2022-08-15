@@ -11,7 +11,7 @@ RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && a
   set -x && \
   apt-get update -y && \
   apt-get upgrade -y && \
-  apt-get install -y libcurl4-openssl-dev libssl-dev git zip libbz2-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmemcached-dev libz-dev libpq-dev libzip-dev libonig-dev libjpeg-dev libmcrypt-dev libtidy-dev libxslt1-dev libmagickwand-dev supervisor zlib1g-dev libxml2-dev graphviz redis  \
+  apt-get install -y libcurl4-openssl-dev libssl-dev git zip libbz2-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmemcached-dev libz-dev libpq-dev libzip-dev libonig-dev libjpeg-dev libmcrypt-dev libtidy-dev libxslt1-dev libmagickwand-dev supervisor zlib1g-dev libxml2-dev graphviz redis procps \
   && docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-install -j$(nproc) gd \
   && docker-php-ext-install pdo_mysql intl pcntl sockets bcmath soap exif opcache zip \

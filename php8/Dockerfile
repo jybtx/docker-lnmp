@@ -13,7 +13,7 @@ RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && a
   apt-get update -y && \
   apt-get upgrade -y && \
   apt-get update && \
-  apt-get install -y --no-install-recommends libicu-dev libmemcached-dev libz-dev libpq-dev libzip-dev libonig-dev libjpeg62-turbo-dev libjpeg-dev libpng-dev libfreetype6-dev libssl-dev libmcrypt-dev libtidy-dev libxslt1-dev libmagickwand-dev supervisor zlib1g-dev libxml2-dev libbz2-dev graphviz && \
+  apt-get install -y --no-install-recommends libicu-dev libmemcached-dev libz-dev libpq-dev libzip-dev libonig-dev libjpeg62-turbo-dev libjpeg-dev libpng-dev libfreetype6-dev libssl-dev libmcrypt-dev libtidy-dev libxslt1-dev libmagickwand-dev supervisor zlib1g-dev libxml2-dev libbz2-dev graphviz procps && \
 
   rm -rf /var/lib/apt/lists/* && \
 
