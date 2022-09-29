@@ -33,10 +33,9 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
     networks:
-      - frontend  
+      - frontend
 
-
-  phpfpm:
+  php73:
     build: ./supervisor
     container_name: my_php
     ports:
