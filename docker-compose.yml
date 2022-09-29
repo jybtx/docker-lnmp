@@ -141,7 +141,7 @@ services:
   memcached:
     hostname: memcached
     container_name: memcached
-    image: memcached:3.2.0
+    image: memcached
     expose:
       - "11211"
     restart: always
