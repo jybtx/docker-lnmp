@@ -25,10 +25,10 @@ RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && a
 && pecl install swoole && docker-php-ext-enable swoole \
 
 # 安装 mcrypt 扩展
-&& pecl install mcrypt-1.0.5 && docker-php-ext-enable mcrypt \
+&& pecl install mcrypt && docker-php-ext-enable mcrypt \
 
 # 安装 imagick 扩展
-&& pecl install imagick-3.7.0 && docker-php-ext-enable imagick \
+&& pecl install imagick && docker-php-ext-enable imagick \
 
   && apt-get clean \
 
