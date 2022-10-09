@@ -120,6 +120,22 @@ services:
       - backend
     restart: always
 
+  elasticsearch:
+    hostname: elasticsearch
+    container_name: elasticsearch
+    image: elasticsearch
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      TZ: 'Asia/Shanghai'
+      ELASTIC_PASSWORD: '123456'
+    ports:
+      - "9200:9200"
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data:z
+    networks:
+      - backend
+    restart: always
+
   redis:
     image: redis
     container_name: redis
