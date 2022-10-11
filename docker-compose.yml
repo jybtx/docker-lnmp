@@ -101,7 +101,6 @@ services:
       TZ: 'Asia/Shanghai'
     networks:
       - backend
-
   mysql:
     image: mysql:8.0
     container_name: mysql
