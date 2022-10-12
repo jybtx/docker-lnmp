@@ -2,7 +2,8 @@ version: '3'
 services:
   nginx:
     image: nginx
-    container_name: my_nginx
+    hostname: nginx
+    container_name: nginx
     ports:
       - "80:80"
       - "443:443"
@@ -22,6 +23,7 @@ services:
 
   node:
     image: node:12.18.3
+    hostname: node
     container_name: node
     ports:
       - "8080:8080"
@@ -36,8 +38,9 @@ services:
       - frontend
 
   php73:
+    hostname: php73
     build: ./supervisor
-    container_name: my_php
+    container_name: php73
     ports:
       - "9000:9000"
     volumes:
@@ -82,8 +85,8 @@ services:
 
   php74:
     build: ./php74
-    container_name: php7.4
-    hostname: php7.4
+    container_name: php74
+    hostname: php74
     expose:
       - "9000"
     volumes:
@@ -104,6 +107,7 @@ services:
 
   mysql:
     image: mysql:8.0
+    hostname: mysql
     container_name: mysql
     ports:
       - "3306:3306"
@@ -114,11 +118,9 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
       MYSQL_ROOT_PASSWORD: 123456
-    #  MYSQL_USER: repl
-    #  MYSQL_PASSWORD: 123456
+    restart: always
     networks:
       - backend
-    restart: always
 
   elasticsearch:
     hostname: elasticsearch
@@ -138,6 +140,7 @@ services:
 
   redis:
     image: redis
+    hostname: redis
     container_name: redis
     ports:
       - "6379:6379"
