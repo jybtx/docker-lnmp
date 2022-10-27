@@ -129,13 +129,14 @@ services:
     environment:
       ES_JAVA_OPTS: -Xms512m -Xmx512m
       TZ: 'Asia/Shanghai'
+      discovery.type: single-node
       # ELASTIC_PASSWORD: '123456'
     ports:
       - "9200:9200"
     volumes:
-      - ./elasticsearch/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      # - ./elasticsearch/config:/usr/share/elasticsearch/config:z
+      - ./elasticsearch/data:/usr/share/elasticsearch/data:z
+      # - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro,z
+      - ./elasticsearch/config:/usr/share/elasticsearch/config:z
     networks:
       - backend
     restart: always
