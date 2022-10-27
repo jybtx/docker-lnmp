@@ -129,7 +129,7 @@ services:
     environment:
       ES_JAVA_OPTS: -Xms512m -Xmx512m
       TZ: 'Asia/Shanghai'
-      discovery.type: single-node
+      discovery.type: single-node # 单机版需要
       # ELASTIC_PASSWORD: '123456'
     ports:
       - "9200:9200"
