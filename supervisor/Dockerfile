@@ -25,6 +25,9 @@ RUN set -x && \
 # 安装 memcached 扩展
 pecl install memcached  && docker-php-ext-enable memcached && \
 
+# 安装 redis 扩展
+pecl install redis && docker-php-ext-enable redis && \
+
   docker-php-source delete
 
 
