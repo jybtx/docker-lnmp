@@ -22,7 +22,7 @@ services:
       - frontend
 
   node:
-    image: node:12.18.3
+    image: node
     hostname: node
     container_name: node
     ports:
@@ -125,7 +125,7 @@ services:
   elasticsearch:
     hostname: elasticsearch
     container_name: elasticsearch
-    image: elasticsearch:6.8.23
+    image: elasticsearch:7.16.2
     environment:
       ES_JAVA_OPTS: -Xms512m -Xmx512m
       TZ: 'Asia/Shanghai'
@@ -139,6 +139,40 @@ services:
     networks:
       - backend
     restart: always
+
+  Logstash:
+    hostname: logstash
+    image: logstash:7.16.2
+    container_name: logstash
+    restart: always
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+    command: logstash -f /logstash_dir/logstash.conf
+    depends_on:
+      - elasticsearch
+    ports:
+      - '9600:9600'
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - backend
+
+  Kibana:
+    hostname: kibana
+    image: kibana:7.16.2
+    container_name: kibana
+    restart: always
+    privileged: true
+    ports:
+      - '5601:5601'
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    depends_on:
+      - elasticsearch
+    networks:
+      - backend
+
 
   redis:
     image: redis
