@@ -28,7 +28,7 @@ pecl install memcached  && docker-php-ext-enable memcached && \
 # 安装 redis 扩展
 pecl install redis && docker-php-ext-enable redis && \
 # 安装 swoole 扩展
-pecl install swoole-5.0.0 && docker-php-ext-enable swoole && \
+pecl install swoole-4.8.12 && docker-php-ext-enable swoole && \
 # 清除安装文件
 apt-get clean && \
 # 删除php源码，有助于减小生成的镜像大小
