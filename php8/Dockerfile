@@ -42,8 +42,9 @@ RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && a
 pecl install -o -f memcached  && docker-php-ext-enable memcached && \
 
 # 安装 swoole 扩展
- pecl install -o -f swoole && docker-php-ext-enable swoole && \
-
+pecl install -o -f swoole-5.0.0 && docker-php-ext-enable swoole && \
+# 清除安装文件
+apt-get clean && \
 # 删除php源码，有助于减小生成的镜像大小
 docker-php-source delete 
 
