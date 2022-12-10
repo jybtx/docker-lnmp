@@ -145,9 +145,9 @@ services:
     image: logstash:7.16.2
     container_name: logstash
     restart: always
-    volumes:
-      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
-      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+    # volumes:
+    #  - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
+    #  - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
     command: logstash -f /logstash_dir/logstash.conf
     depends_on:
       - elasticsearch
@@ -166,8 +166,10 @@ services:
     privileged: true
     ports:
       - '5601:5601'
-    volumes:
-      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    # volumes:
+    #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     depends_on:
       - elasticsearch
     networks:
