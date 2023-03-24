@@ -37,6 +37,21 @@ services:
     networks:
       - frontend
 
+  golang:
+    image: golang
+    hostname: golang
+    container_name: golang
+    ports:
+      - "8081:8081"
+    volumes:
+      - /var/www/html:/var/www/html
+    working_dir: /var/www/html
+    tty: true
+    environment:
+      TZ: 'Asia/Shanghai'
+    networks:
+      - frontend
+
   php73:
     hostname: php73
     build: ./supervisor
