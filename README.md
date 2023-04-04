@@ -31,7 +31,7 @@ docker-lnmp
 > cd docker-lnmp
 > docker-compose up -d  
 ```
- > 将你的域名配置文件放在nginx -> conf.d里面   
+ > 将你的域名配置文件放在nginx -> conf.d里面,域名证书可以放置在nginx->cert里面   
 
  > RabbitMQ集群，请cd rabbitmq目录下执行 shell文件，然后执行
  ```shell
