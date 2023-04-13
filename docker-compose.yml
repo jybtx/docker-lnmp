@@ -89,9 +89,6 @@ services:
       - ./php/php-fpm.conf:/usr/local/php/etc/php-fpm.conf
       - ./php/www.conf:/usr/local/php/etc/php-fpm.d/www.conf
       - ./php/log/:/usr/local/php/var/log/
-      - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
-      - ./supervisor/conf.d:/etc/supervisor/conf.d
-      - ./supervisor/log:/var/log/supervisor
     working_dir: /var/www/html
     restart: always
     environment:
