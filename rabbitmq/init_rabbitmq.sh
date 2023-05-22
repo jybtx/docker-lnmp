@@ -24,14 +24,14 @@ docker exec rabbitmq1 /bin/bash -c 'rabbitmqctl cluster_status'
 docker exec rabbitmq2 /bin/bash -c 'rabbitmqctl cluster_status'
 docker exec rabbitmq3 /bin/bash -c 'rabbitmqctl cluster_status'
 
-echo "Starting to create user."
-docker exec rabbitmq1 /bin/bash -c 'rabbitmqctl add_user admin jybtx'
+# echo "Starting to create user."
+# docker exec rabbitmq1 /bin/bash -c 'rabbitmqctl add_user admin jybtx'
 
-echo "Set tags for new user."
-docker exec rabbitmq1 /bin/bash -c 'rabbitmqctl set_user_tags admin administrator'
+# echo "Set tags for new user."
+# docker exec rabbitmq1 /bin/bash -c 'rabbitmqctl set_user_tags admin administrator'
 
-echo "Grant permissions to new user."
-docker exec rabbitmq1 /bin/bash -c "rabbitmqctl set_permissions -p '/' admin '.*' '.*' '.*'"
+# echo "Grant permissions to new user."
+# docker exec rabbitmq1 /bin/bash -c "rabbitmqctl set_permissions -p '/' admin '.*' '.*' '.*'"
 
 # echo "set policy all"
 # docker exec rabbitmq1 /bin/bash -c "rabbitmqctl set_policy ha-all "^" '{"ha-mode":"all","ha-sync-mode":"automatic"}'"
