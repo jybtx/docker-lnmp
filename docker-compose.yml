@@ -25,29 +25,11 @@ services:
     image: node
     hostname: node
     container_name: node
-    ports:
-      - "8080:8080"
     volumes:
       - /var/www/html:/var/www/html
     restart: always
     command: tail -f
     working_dir: /var/www/html
-    environment:
-      TZ: 'Asia/Shanghai'
-    networks:
-      - frontend
-
-  golang:
-    image: golang
-    hostname: golang
-    container_name: golang
-    ports:
-      - "8081:8081"
-    volumes:
-      - /var/www/html:/var/www/html
-    working_dir: /var/www/html
-    tty: true
-    restart: always
     environment:
       TZ: 'Asia/Shanghai'
     networks:
@@ -291,7 +273,30 @@ services:
       RABBITMQ_ERLANG_COOKIE: 'rabbitmqCookie'
     restart: always
     networks:
-      - backend    
+      - backend
+
+  golang:
+    hostname: golang
+    container_name: golang
+    build:
+      context: ./golang
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/www/html:/app
+    deploy:
+      resources:
+        limits:
+          cpus: "0.70"
+          memory: 2G
+    command: go run ./golang/main.go
+    working_dir: /app
+    restart: always
+    environment:
+      TZ: 'Asia/Shanghai'
+    networks:
+      - frontend
 
 networks:
   frontend:
