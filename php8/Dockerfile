@@ -4,12 +4,12 @@ FROM php:8.2-fpm
 
 MAINTAINER jybtx <admin@jybtx.com>
 
-RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
-RUN  sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
-RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && apt-get clean && \
+#RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+#RUN  sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+#RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && apt-get clean
 
 # 安装基础
-  set -x && \
+RUN  set -x && \
   apt-get update -y && \
   apt-get upgrade -y && \
   apt-get update && \
@@ -28,7 +28,9 @@ RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && a
   && docker-php-ext-install opcache \
   && docker-php-ext-enable opcache && \
   docker-php-ext-configure gd --with-jpeg=/usr/lib --with-freetype=/usr/include/freetype2 && \
+
   docker-php-ext-install gd && \
+
 # 安装 Redis 扩展
   pecl install -o -f redis && docker-php-ext-enable redis && \
 
@@ -48,8 +50,10 @@ pecl install -o -f memcached  && docker-php-ext-enable memcached && \
 
 # 安装 swoole 扩展
 pecl install -o -f swoole && docker-php-ext-enable swoole && \
+
 # 清除安装文件
 apt-get clean && \
+
 # 删除php源码，有助于减小生成的镜像大小
 docker-php-source delete
 

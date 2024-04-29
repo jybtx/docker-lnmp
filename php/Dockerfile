@@ -4,7 +4,6 @@ MAINTAINER jybtx <admin@jybtx.com>
 
 RUN export CFLAGS="PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS"
 
-# COPY sources.list /etc/apt
 
 RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN  sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
@@ -24,12 +23,16 @@ RUN set -x && \
 
 # 安装 memcached 扩展
 pecl install memcached  && docker-php-ext-enable memcached && \
+
 # 安装 redis 扩展
 pecl install redis && docker-php-ext-enable redis && \
+
 # 安装 swoole 扩展
 pecl install swoole-4.8.12 && docker-php-ext-enable swoole && \
+
 # 清除安装文件
 apt-get clean && \
+
 # 删除php源码，有助于减小生成的镜像大小
 docker-php-source delete
 
