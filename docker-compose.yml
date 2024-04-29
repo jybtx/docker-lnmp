@@ -295,7 +295,7 @@ services:
         limits:
           cpus: "0.70"
           memory: 2G
-    command: go run ./golang/main.go
+    # command: go run ./golang/main.go
     working_dir: /app
     restart: always
     environment:

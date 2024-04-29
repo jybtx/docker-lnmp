@@ -12,7 +12,7 @@ RUN mkdir /app
 WORKDIR /app
 
 #将Dockerfile 中的文件存储到/app下
-COPY . .
+COPY main.go .
 
 # 因为已经是在 /app下了，所以使用  ./
 # RUN go build -o main ./main.go
