@@ -12,7 +12,7 @@ RUN mkdir /app
 WORKDIR /app
 
 #将Dockerfile 中的文件存储到/app下
-# COPY ./go .
+COPY . .
 
 # 因为已经是在 /app下了，所以使用  ./
 # RUN go build -o main ./main.go
@@ -20,4 +20,4 @@ WORKDIR /app
 #设置容器的启动命令，CMD是设置容器的启动指令
 # CMD /app/main
 
-# CMD ["go", "run", "main.go"]
+CMD ["go", "run", "main.go"]
