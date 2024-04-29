@@ -43,12 +43,12 @@ docker-lnmp
 │   ├── redis.conf
 │   └── redis.log
 └── supervisor
-├── conf.d
-├── Dockerfile
-├── Dockerfile2
-├── log
-├── sources.list
-└── supervisord.conf
+    ├── conf.d
+    ├── Dockerfile
+    ├── Dockerfile2
+    ├── log
+    ├── sources.list
+    └── supervisord.conf
 ```
 # 创建镜像与安装
  > 直接使用docker-compose一键制作镜像并启动容器
