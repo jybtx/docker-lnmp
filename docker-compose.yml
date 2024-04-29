@@ -283,6 +283,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    depends_on:
+      - memcached
+      - redis
+      - mysql
+      - nginx
     volumes:
       - /var/www/html:/app
     deploy:
