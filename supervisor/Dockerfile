@@ -4,12 +4,12 @@ FROM php:8.2-fpm
 
 MAINTAINER jybtx <admin@jybtx.com>
 
-RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
-RUN  sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
-RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && apt-get clean && \
+#RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+#RUN  sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+#RUN  sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list && apt-get clean
 
 # 安装基础
-  set -x && \
+RUN  set -x && \
   apt-get update -y && \
   apt-get upgrade -y && \
   apt-get update && \
