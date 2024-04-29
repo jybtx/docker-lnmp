@@ -6,23 +6,49 @@
 ## 目录结构：
 ```html
 docker-lnmp
-├─mysql
-│  └─data
-├─nginx
-│  ├─conf.d
-│  └─log
-├─php
-│  └─log
-├─rabbitmq
-│  ├─data
-│  ├─data2
-│  └─data3
-├─redis
-│  ├─conf
-│  └─data
-└─supervisor
-    ├─conf.d
-    └─log
+├── docker-compose.yml
+├── elasticsearch
+│   └── data
+├── golang
+│   ├── Dockerfile
+│   └── main.go
+├── mysql
+│   ├── data
+│   └── my.cnf
+├── nginx
+│   ├── cert
+│   ├── conf.d
+│   │   └── default.conf
+│   ├── log
+│   └── nginx.conf
+├── php
+│   ├── Dockerfile
+│   ├── log
+│   ├── php-fpm.conf
+│   ├── php.ini
+│   └── www.conf
+├── php74
+│   └── Dockerfile
+├── php8
+│   └── Dockerfile
+├── rabbitmq
+│   ├── data
+│   ├── data2
+│   ├── data3
+│   └── init_rabbitmq.sh
+├── README.md
+├── redis
+│   ├── conf
+│   ├── data
+│   ├── redis.conf
+│   └── redis.log
+└── supervisor
+├── conf.d
+├── Dockerfile
+├── Dockerfile2
+├── log
+├── sources.list
+└── supervisord.conf
 ```
 # 创建镜像与安装
  > 直接使用docker-compose一键制作镜像并启动容器
