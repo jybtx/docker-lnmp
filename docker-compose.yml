@@ -289,14 +289,13 @@ services:
       - mysql
       - nginx
     volumes:
-      - /var/www/html:/app
+      - /var/www/html:/go/src
     deploy:
       resources:
         limits:
           cpus: "0.70"
           memory: 2G
-    # command: go run ./golang/main.go
-    working_dir: /app
+    working_dir: /go/src
     restart: always
     environment:
       TZ: 'Asia/Shanghai'
