@@ -37,7 +37,7 @@ services:
 
   php73:
     hostname: php73
-    build: ./php
+    build: ./php73
     container_name: php73
     ports:
       - "9000:9000"
@@ -49,26 +49,6 @@ services:
       - ./php/log/:/usr/local/php/var/log/
     working_dir: /var/www/html
     restart: always
-    environment:
-      TZ: 'Asia/Shanghai'
-    networks:
-      - backend
-
-  supervisor:
-    hostname: supervisor
-    build: ./supervisor
-    container_name: supervisor
-    expose:
-      - "9000"
-    volumes:
-      - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
-      - ./supervisor/conf.d:/etc/supervisor/conf.d
-      - ./supervisor/log:/var/log/supervisor
-      - /var/www/html:/var/www/html
-    working_dir: /etc/supervisor/conf.d
-    restart: always
-    command: >
-      bash -c "supervisord -s -c /etc/supervisor/supervisord.conf && php-fpm"
     environment:
       TZ: 'Asia/Shanghai'
     networks:
@@ -128,60 +108,6 @@ services:
     restart: always
     networks:
       - backend
-
-  elasticsearch:
-    hostname: elasticsearch
-    container_name: elasticsearch
-    image: elasticsearch:7.16.2
-    environment:
-      ES_JAVA_OPTS: -Xms512m -Xmx512m
-      TZ: 'Asia/Shanghai'
-      # ELASTIC_PASSWORD: '123456'
-      discovery.type: single-node
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    volumes:
-      - ./elasticsearch/data:/usr/share/elasticsearch/data:z
-    networks:
-      - backend
-    restart: always
-
-  Logstash:
-    hostname: logstash
-    image: logstash:7.16.2
-    container_name: logstash
-    restart: always
-    # volumes:
-    #  - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
-    #  - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
-    command: logstash -f /logstash_dir/logstash.conf
-    depends_on:
-      - elasticsearch
-    ports:
-      - '9600:9600'
-    environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    networks:
-      - backend
-
-  Kibana:
-    hostname: kibana
-    image: kibana:7.16.2
-    container_name: kibana
-    restart: always
-    privileged: true
-    ports:
-      - '5601:5601'
-    environment:
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
-    # volumes:
-    #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-    depends_on:
-      - elasticsearch
-    networks:
-      - backend
-
 
   redis:
     image: redis
@@ -283,6 +209,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+      - "9300:9300"
     depends_on:
       - memcached
       - redis
