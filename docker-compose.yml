@@ -109,6 +109,19 @@ services:
     networks:
       - backend
 
+  pgsql:
+    image: postgres
+    hostname: postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    entrypoint:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - ./mysql/data:/var/lib/postgresql
+    restart: always
+
   redis:
     image: redis
     hostname: redis
