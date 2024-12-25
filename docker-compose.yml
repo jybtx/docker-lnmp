@@ -121,6 +121,8 @@ services:
     volumes:
       - ./mysql/data:/var/lib/postgresql
     restart: always
+    networks:
+      - backend
 
   redis:
     image: redis
