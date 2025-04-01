@@ -160,8 +160,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: 1G
+          cpus: '0.70'
+          memory: 2G
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -183,8 +183,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: 1G
+          cpus: '0.70'
+          memory: 2G
     ports:
       - "5673:5672"
     volumes:
@@ -203,8 +203,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: 1G
+          cpus: '0.70'
+          memory: 2G
     ports:
       - "5674:5672"
     volumes:
