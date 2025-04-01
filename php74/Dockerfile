@@ -21,6 +21,9 @@ RUN  set -x && \
 # 安装 memcached 扩展
 && pecl install memcached && docker-php-ext-enable memcached \
 
+# 安装 Redis 扩展
+&& pecl install redis-6.0.0 && docker-php-ext-enable redis \
+
 # 安装 swoole 扩展
 && pecl install swoole-4.8.12 && docker-php-ext-enable swoole \
 

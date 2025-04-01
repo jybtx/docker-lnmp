@@ -13,7 +13,7 @@ RUN  set -x && \
   apt-get update -y && \
   apt-get upgrade -y && \
   apt-get update && \
-  apt-get install -y --no-install-recommends libicu-dev libmemcached-dev libz-dev libpq-dev libzip-dev libonig-dev libjpeg62-turbo-dev libjpeg-dev libpng-dev libfreetype6-dev libssl-dev libmcrypt-dev libtidy-dev libxslt1-dev libmagickwand-dev supervisor zlib1g-dev libxml2-dev libbz2-dev graphviz procps default-mysql-client  && \
+  apt-get install -y --no-install-recommends libicu-dev libmemcached-dev libz-dev libpq-dev libzip-dev libonig-dev libjpeg62-turbo-dev libjpeg-dev libpng-dev libfreetype6-dev libssl-dev libmcrypt-dev libtidy-dev libxslt1-dev libmagickwand-dev supervisor zlib1g-dev libxml2-dev libbz2-dev graphviz procps default-mysql-client librdkafka-dev && \
 
   rm -rf /var/lib/apt/lists/* && \
 
@@ -37,10 +37,13 @@ RUN  set -x && \
   mysql -V && \
 
 # 安装 grpc 扩展
-# pecl install -o -f grpc && docker-php-ext-enable grpc && \
+pecl install -o -f grpc && docker-php-ext-enable grpc && \
 
 # 安装 protobuf 扩展
-# pecl install -o -f protobuf  && docker-php-ext-enable protobuf && \
+pecl install -o -f protobuf  && docker-php-ext-enable protobuf && \
+
+# install rdkafka
+pecl install -o -f rdkafka && docker-php-ext-enable rdkafka && \
 
 # 安装 imagick 扩展
 pecl install -o -f imagick && docker-php-ext-enable imagick && \
