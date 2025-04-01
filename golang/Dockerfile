@@ -11,7 +11,8 @@ WORKDIR /go/src
 ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on
 
 # 依赖下载
-ENV GOPROXY=https://goproxy.cn,direct GOPATH=/go:/go/src
+ENV GOPROXY=https://goproxy.cn,direct
+ENV GOPATH=/go:/go/src
 
 # 设置时区为上海
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
