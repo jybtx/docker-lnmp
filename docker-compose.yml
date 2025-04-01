@@ -1,4 +1,4 @@
-version: '3'
+# version: '3'
 services:
   nginx:
     image: nginx
@@ -161,7 +161,7 @@ services:
       resources:
         limits:
           cpus: '2'
-          memory: 8G      
+          memory: 1G
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -184,7 +184,7 @@ services:
       resources:
         limits:
           cpus: '2'
-          memory: 8G      
+          memory: 1G
     ports:
       - "5673:5672"
     volumes:
@@ -204,7 +204,7 @@ services:
       resources:
         limits:
           cpus: '2'
-          memory: 8G      
+          memory: 1G
     ports:
       - "5674:5672"
     volumes:
@@ -231,7 +231,7 @@ services:
       - mysql
       - nginx
     volumes:
-      - /var/www/html:/go/src
+      - /var/www/src:/go/src
     deploy:
       resources:
         limits:
@@ -242,6 +242,48 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
     networks:
+      - frontend
+
+  zookeeper:
+    image: zookeeper
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      TZ: 'Asia/Shanghai'
+    restart: always
+    networks:
+      - backend
+      - frontend
+
+  kafka:
+    image: bitnami/kafka
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    restart: always
+    environment:
+      TZ: 'Asia/Shanghai'
+      # KRaft settings
+      KAFKA_CFG_NODE_ID: 0
+      KAFKA_CFG_PROCESS_ROLES: controller,broker
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 0@kafka:9093
+      # Listeners
+      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://:9092
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - backend
       - frontend
 
 networks:
